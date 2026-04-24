@@ -1,0 +1,922 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>מרדכי קרן · לגעת ברוח, לטפל בגוף</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ---------- PREMIUM FONTUP FACES ---------- */
+  @font-face{font-family:"Mamilla";src:url("fonts/Mamilla-Light.woff2") format("woff2");font-weight:300;font-display:swap}
+  @font-face{font-family:"Mamilla";src:url("fonts/Mamilla-Regular.woff2") format("woff2");font-weight:400;font-display:swap}
+  @font-face{font-family:"Mamilla";src:url("fonts/Mamilla-Medium.woff2") format("woff2");font-weight:500;font-display:swap}
+  @font-face{font-family:"Mamilla";src:url("fonts/Mamilla-SemiBold.woff2") format("woff2");font-weight:600;font-display:swap}
+  @font-face{font-family:"Mamilla";src:url("fonts/Mamilla-Bold.woff2") format("woff2");font-weight:700;font-display:swap}
+  @font-face{font-family:"Alon";src:url("fonts/Alon-Light.woff2") format("woff2");font-weight:300;font-display:swap}
+  @font-face{font-family:"Alon";src:url("fonts/Alon-Regular.woff2") format("woff2");font-weight:400;font-display:swap}
+  @font-face{font-family:"Alon";src:url("fonts/Alon-Medium.woff2") format("woff2");font-weight:500;font-display:swap}
+  @font-face{font-family:"Alon";src:url("fonts/Alon-SemiBold.woff2") format("woff2");font-weight:600;font-display:swap}
+  @font-face{font-family:"Alon";src:url("fonts/Alon-Bold.woff2") format("woff2");font-weight:700;font-display:swap}
+  /* ---------- PALETTES (TWEAKABLE) ---------- */
+  :root[data-palette="cosmos"]{
+    --bg-0:#0b0716;
+    --bg-1:#140b28;
+    --bg-2:#1d1138;
+    --ink:#f3ecff;
+    --ink-soft:#c9bce6;
+    --ink-dim:#8a7db0;
+    --line:rgba(201,188,230,.14);
+    --accent:#c9a86a;
+    --accent-soft:#e7d3a3;
+    --violet:#8b6ff0;
+    --lilac:#c8b6ff;
+    --glow-a:rgba(139,111,240,.55);
+    --glow-b:rgba(201,168,106,.25);
+  }
+  :root[data-palette="twilight"]{
+    --bg-0:#0a0e1f;
+    --bg-1:#0f152e;
+    --bg-2:#17203f;
+    --ink:#eef2ff;
+    --ink-soft:#b9c2e4;
+    --ink-dim:#7a83aa;
+    --line:rgba(185,194,228,.14);
+    --accent:#e8b0d6;
+    --accent-soft:#f5cfe6;
+    --violet:#6f8dff;
+    --lilac:#a8c2ff;
+    --glow-a:rgba(111,141,255,.5);
+    --glow-b:rgba(232,176,214,.22);
+  }
+  :root[data-palette="dawn"]{
+    --bg-0:#140b18;
+    --bg-1:#221028;
+    --bg-2:#31173a;
+    --ink:#fff3ea;
+    --ink-soft:#f1d8d0;
+    --ink-dim:#b39797;
+    --line:rgba(241,216,208,.14);
+    --accent:#ffb37a;
+    --accent-soft:#ffd0a8;
+    --violet:#c67fd4;
+    --lilac:#e9b5f0;
+    --glow-a:rgba(198,127,212,.55);
+    --glow-b:rgba(255,179,122,.22);
+  }
+  :root[data-palette="forest"]{
+    --bg-0:#071411;
+    --bg-1:#0d1f1a;
+    --bg-2:#122b23;
+    --ink:#effaf2;
+    --ink-soft:#bcd6c6;
+    --ink-dim:#7ea392;
+    --line:rgba(188,214,198,.14);
+    --accent:#d6b87a;
+    --accent-soft:#ead2a0;
+    --violet:#69b38e;
+    --lilac:#a5d4bc;
+    --glow-a:rgba(105,179,142,.45);
+    --glow-b:rgba(214,184,122,.2);
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg-0);
+    color:var(--ink);
+    font-family:"Alon","Helvetica Neue",sans-serif;
+    font-weight:300;
+    line-height:1.65;
+    font-size:17px;
+    letter-spacing:.005em;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .serif{font-family:"Mamilla",serif;font-weight:500}
+  .mono{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-dim)}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+  /* ---------- BACKGROUND COSMOS ---------- */
+  .sky{
+    position:fixed;inset:0;z-index:-2;overflow:hidden;pointer-events:none;
+    background:
+      radial-gradient(ellipse 60% 40% at 80% 10%, var(--glow-a), transparent 60%),
+      radial-gradient(ellipse 50% 35% at 10% 90%, var(--glow-b), transparent 65%),
+      radial-gradient(ellipse 70% 50% at 50% 50%, var(--bg-2), transparent 70%),
+      var(--bg-0);
+  }
+  .stars{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.7}
+  .stars i{
+    position:absolute;width:2px;height:2px;border-radius:50%;
+    background:var(--ink);opacity:.7;
+    animation:tw 4s ease-in-out infinite;
+  }
+  @keyframes tw{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:1;transform:scale(1.1)}}
+
+  /* ---------- NAV ---------- */
+  nav.top{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    padding:18px 48px;display:flex;align-items:center;justify-content:space-between;
+    backdrop-filter:blur(14px);
+    background:linear-gradient(to bottom, rgba(11,7,22,.65), rgba(11,7,22,0));
+  }
+  .logo{display:flex;align-items:center;gap:10px}
+  .logo-mark{
+    width:38px;height:38px;border-radius:50%;
+    background:linear-gradient(135deg, var(--accent), var(--accent-soft));
+    display:grid;place-items:center;position:relative;
+    box-shadow:0 0 24px var(--glow-a), 0 0 0 1px var(--line);
+    color:var(--bg-0);font-family:"Mamilla",serif;font-weight:600;font-size:15px;
+  }
+  .logo-text{font-family:"Mamilla",serif;font-size:19px;letter-spacing:.04em;line-height:1.1}
+  .logo-text .sub{font-size:11px;letter-spacing:.2em;color:var(--ink-dim);font-family:'JetBrains Mono',monospace;text-transform:uppercase}
+  nav.top ul{display:flex;gap:34px;list-style:none;margin:0;padding:0;font-size:14px;color:var(--ink-soft)}
+  nav.top ul a:hover{color:var(--ink)}
+  .nav-cta{
+    padding:9px 18px;border:1px solid var(--line);border-radius:999px;font-size:13px;
+    transition:.3s;background:rgba(255,255,255,.02);
+  }
+  .nav-cta:hover{border-color:var(--accent);color:var(--accent)}
+
+  /* ---------- LAYOUT ---------- */
+  .wrap{max-width:1240px;margin:0 auto;padding:0 48px}
+  section{position:relative;padding:140px 0}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:22px}
+  .eyebrow::before{content:"";width:28px;height:1px;background:var(--accent)}
+
+  /* ---------- HERO ---------- */
+  .hero{padding-top:190px;padding-bottom:120px;text-align:center;position:relative}
+  .hero-orb{
+    position:absolute;top:40px;left:50%;transform:translateX(-50%);
+    width:720px;height:720px;max-width:90vw;max-height:90vw;
+    border-radius:50%;
+    background:
+      radial-gradient(circle at 50% 45%, var(--glow-a) 0%, transparent 55%),
+      radial-gradient(circle at 50% 50%, transparent 40%, var(--glow-b) 55%, transparent 75%);
+    filter:blur(6px);
+    z-index:-1;
+    animation:pulse 9s ease-in-out infinite;
+  }
+  @keyframes pulse{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.05)}}
+  .hero h1{
+    font-family:"Mamilla",serif;font-weight:500;
+    font-size:clamp(40px,6vw,88px);line-height:1.1;letter-spacing:-.01em;
+    margin:0 auto;max-width:18ch;
+  }
+  .hero h1 em{font-style:normal;color:var(--accent);font-weight:500}
+  .hero p.lede{
+    max-width:60ch;margin:32px auto 0;
+    font-size:20px;color:var(--ink-soft);font-weight:300;
+    text-wrap:pretty;
+  }
+  .hero-cta{margin-top:48px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:16px 32px;border-radius:999px;
+    font-size:15px;font-weight:500;
+    transition:transform .3s, box-shadow .3s, background .3s;
+  }
+  .btn-primary{
+    background:var(--ink);color:var(--bg-0);
+    box-shadow:0 10px 40px -10px var(--glow-a), 0 0 0 1px rgba(255,255,255,.1);
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 20px 50px -10px var(--glow-a)}
+  .btn-ghost{
+    border:1px solid var(--line);color:var(--ink-soft);background:rgba(255,255,255,.02);
+  }
+  .btn-ghost:hover{border-color:var(--accent);color:var(--ink)}
+  .btn .arrow{display:inline-block;transition:transform .3s}
+  .btn:hover .arrow{transform:translateX(-4px)}
+
+  .hero-meta{
+    margin-top:80px;display:flex;gap:48px;justify-content:center;flex-wrap:wrap;
+    color:var(--ink-dim);font-size:13px;
+  }
+  .hero-meta span{display:flex;align-items:center;gap:8px}
+  .hero-meta span::before{content:"";width:5px;height:5px;background:var(--accent);border-radius:50%}
+
+  /* ---------- SERVICES SECTION ---------- */
+  .services{overflow:hidden}
+  .services-head{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;margin-bottom:60px}
+  .services h2{
+    font-family:"Mamilla",serif;font-weight:500;
+    font-size:clamp(34px,4vw,56px);line-height:1.1;margin:0;letter-spacing:-.01em;
+  }
+  .services h2 span{color:var(--accent);font-style:italic;font-family:"Mamilla",serif}
+  .services p.intro{color:var(--ink-soft);font-size:17px;margin:0 0 20px}
+  .service-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:2px;
+    background:var(--line);border:1px solid var(--line);border-radius:24px;overflow:hidden;
+  }
+  .service-card{
+    background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+    padding:48px 40px;
+    transition:.4s;
+  }
+  .service-card:hover{background:linear-gradient(180deg, rgba(139,111,240,.08), rgba(255,255,255,0))}
+  .service-icon{
+    font-size:38px;margin-bottom:20px;display:inline-block;
+    filter:drop-shadow(0 0 18px var(--glow-a));
+  }
+  .service-card h3{font-family:"Mamilla",serif;font-size:26px;font-weight:500;margin:0 0 14px;letter-spacing:-.01em}
+  .service-card p{font-size:15px;color:var(--ink-soft);margin:0;line-height:1.7}
+
+  /* ---------- BENEFITS ---------- */
+  .benefits-grid{
+    margin-top:80px;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:2px;
+    background:var(--line);border:1px solid var(--line);border-radius:24px;overflow:hidden;
+  }
+  .benefit-card{
+    background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+    padding:36px 28px;
+    transition:.4s;
+  }
+  .benefit-card:hover{background:linear-gradient(180deg, rgba(139,111,240,.08), rgba(255,255,255,0))}
+  .benefit-check{
+    width:36px;height:36px;border-radius:50%;
+    border:1px solid var(--line);display:grid;place-items:center;margin-bottom:20px;
+    background:radial-gradient(circle at 30% 30%, var(--glow-a), transparent 70%);
+    color:var(--accent);font-size:16px;
+  }
+  .benefit-card h3{font-family:"Mamilla",serif;font-size:20px;font-weight:500;margin:0 0 10px}
+  .benefit-card p{font-size:14px;color:var(--ink-soft);margin:0;line-height:1.6}
+
+  /* ---------- BELIEF / WHY ---------- */
+  .why-block{
+    margin-top:80px;padding:48px;border:1px solid var(--line);border-radius:24px;
+    background:radial-gradient(ellipse at top right, rgba(139,111,240,.12), transparent 60%);
+    display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center;
+  }
+  .why-quote{
+    font-family:"Mamilla",serif;font-style:italic;font-size:26px;line-height:1.4;
+    color:var(--ink);max-width:24ch;
+    border-right:2px solid var(--accent);padding-right:28px;
+  }
+  .why-quote small{display:block;font-style:normal;font-size:12px;color:var(--ink-dim);margin-top:14px;letter-spacing:.15em;text-transform:uppercase;font-family:"JetBrains Mono",monospace}
+  .why-result h4{font-family:"Mamilla",serif;font-size:17px;font-weight:500;margin:0 0 14px;color:var(--ink-soft)}
+  .why-result ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+  .why-result li{display:flex;align-items:flex-start;gap:12px;color:var(--ink-soft);font-size:15px;line-height:1.6}
+  .why-result li::before{content:"–";color:var(--accent);font-weight:500;flex-shrink:0}
+
+  /* ---------- MID CTA ---------- */
+  .mid-cta{text-align:center;padding:80px 0}
+  .mid-cta h3{
+    font-family:"Mamilla",serif;font-weight:500;
+    font-size:clamp(28px,3.2vw,44px);line-height:1.2;margin:0 0 32px;letter-spacing:-.01em;
+    max-width:20ch;margin-inline:auto;
+  }
+  .phone-big{
+    font-family:"Mamilla",serif;font-size:clamp(26px,3vw,40px);color:var(--accent);font-weight:500;
+    display:inline-flex;align-items:center;gap:14px;direction:ltr;
+  }
+
+  /* ---------- FLOW ---------- */
+  .flow{padding-top:80px}
+  .flow-head{text-align:center;margin-bottom:80px}
+  .flow-head h2{
+    font-family:"Mamilla",serif;font-weight:500;
+    font-size:clamp(34px,4vw,56px);line-height:1.1;margin:0 auto;max-width:18ch;letter-spacing:-.01em;
+  }
+  .flow-head p{color:var(--ink-soft);max-width:52ch;margin:22px auto 0}
+  .flow-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:24px;overflow:hidden}
+  .step{background:var(--bg-1);padding:40px 28px;position:relative;min-height:260px;display:flex;flex-direction:column}
+  .step .step-num{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.2em;color:var(--accent);margin-bottom:28px}
+  .step h3{font-family:"Mamilla",serif;font-size:22px;font-weight:500;margin:0 0 12px;line-height:1.25}
+  .step p{font-size:14px;color:var(--ink-soft);margin:0;line-height:1.6}
+  .step-glyph{
+    width:42px;height:42px;margin-bottom:24px;border-radius:50%;
+    border:1px solid var(--line);
+    display:grid;place-items:center;
+    background:radial-gradient(circle at 30% 30%, var(--glow-a), transparent 70%);
+  }
+  .step-glyph::after{
+    content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);
+    box-shadow:0 0 12px var(--accent);
+  }
+  .flow-meta{
+    margin-top:40px;display:flex;gap:48px;justify-content:center;flex-wrap:wrap;
+    color:var(--ink-dim);font-size:13px;
+  }
+  .flow-meta span{display:flex;align-items:center;gap:8px}
+  .flow-meta span::before{content:"";width:5px;height:5px;background:var(--accent);border-radius:50%}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid;grid-template-columns:5fr 7fr;gap:80px;align-items:center}
+  .about-photo{
+    aspect-ratio:4/5;border-radius:24px;position:relative;overflow:hidden;
+    border:1px solid var(--line);
+    box-shadow:0 30px 80px -30px rgba(0,0,0,.6);
+    background:
+      linear-gradient(180deg, transparent 55%, rgba(11,7,22,.55) 100%),
+      radial-gradient(ellipse at top right, rgba(139,111,240,.18), transparent 60%),
+      linear-gradient(135deg, var(--bg-1), var(--bg-2));
+    display:grid;place-items:center;
+  }
+  .about-photo .halo{
+    position:absolute;inset:-30%;border-radius:50%;
+    background:radial-gradient(circle, var(--glow-a) 0%, transparent 55%);
+    filter:blur(20px);
+    z-index:-1;
+  }
+  .about-photo .ph{
+    font-family:"Mamilla",serif;font-size:15px;color:var(--ink-dim);
+    text-align:center;padding:24px;
+  }
+  .about-photo .caption{
+    position:absolute;bottom:20px;right:20px;left:20px;z-index:2;
+    font-family:"JetBrains Mono",monospace;font-size:10px;
+    letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .about-photo .caption::before{content:"";flex:1;height:1px;background:var(--line);margin-left:12px}
+  .about h2{
+    font-family:"Mamilla",serif;font-weight:500;
+    font-size:clamp(34px,4vw,56px);line-height:1.1;margin:0 0 28px;letter-spacing:-.01em;
+  }
+  .about h2 em{font-style:italic;color:var(--accent)}
+  .about p{color:var(--ink-soft);font-size:17px;margin:0 0 20px;max-width:52ch}
+  .about .placeholder-note{
+    margin-top:24px;padding:18px 22px;border:1px dashed var(--line);border-radius:14px;
+    font-size:13px;color:var(--ink-dim);font-family:"JetBrains Mono",monospace;letter-spacing:.05em;line-height:1.7;
+  }
+
+  /* ---------- LOCATION ---------- */
+  .location{padding:0}
+  .location-box{
+    position:relative;
+    border:1px solid var(--line);border-radius:32px;
+    padding:80px 64px;overflow:hidden;
+    background:linear-gradient(135deg, rgba(139,111,240,.08), rgba(201,168,106,.05));
+  }
+  .location-box::before{
+    content:"";position:absolute;inset:-50%;
+    background:conic-gradient(from 0deg, transparent, var(--glow-a), transparent, var(--glow-b), transparent);
+    opacity:.35;animation:spin 30s linear infinite;z-index:-1;
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .location-inner{display:grid;grid-template-columns:3fr 2fr;gap:64px;align-items:center}
+  .location-inner h2{font-family:"Mamilla",serif;font-weight:500;font-size:clamp(32px,3.5vw,48px);line-height:1.1;margin:0 0 20px;letter-spacing:-.01em}
+  .location-inner h2 .pin{color:var(--accent)}
+  .location-inner p{color:var(--ink-soft);font-size:17px;margin:0 0 20px;max-width:42ch}
+  .cities{display:flex;flex-direction:column;gap:16px}
+  .city{
+    padding:24px 28px;border:1px solid var(--line);border-radius:18px;
+    background:rgba(0,0,0,.25);
+    display:flex;align-items:center;gap:18px;
+  }
+  .city .city-dot{
+    width:12px;height:12px;border-radius:50%;background:var(--accent);
+    box-shadow:0 0 16px var(--accent);flex-shrink:0;
+  }
+  .city .city-name{font-family:"Mamilla",serif;font-size:22px;font-weight:500}
+  .city .city-tag{margin-right:auto;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--ink-dim);letter-spacing:.15em;text-transform:uppercase}
+
+  /* ---------- AUDIENCE ---------- */
+  .audience-head{text-align:center;margin-bottom:60px}
+  .audience-head h2{
+    font-family:"Mamilla",serif;font-weight:500;
+    font-size:clamp(34px,4vw,56px);line-height:1.1;margin:0 auto;max-width:20ch;letter-spacing:-.01em;
+  }
+  .audience-head p{color:var(--ink-soft);max-width:48ch;margin:22px auto 0}
+  .audience-list{
+    max-width:760px;margin:0 auto;
+    display:grid;gap:14px;
+  }
+  .audience-row{
+    display:flex;align-items:flex-start;gap:18px;
+    padding:20px 24px;border:1px solid var(--line);border-radius:16px;
+    background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+    font-size:16px;color:var(--ink-soft);line-height:1.55;
+    transition:.3s;
+  }
+  .audience-row:hover{border-color:var(--accent);color:var(--ink)}
+  .audience-row .mark{
+    width:28px;height:28px;border-radius:50%;
+    background:var(--accent);color:var(--bg-0);
+    display:grid;place-items:center;flex-shrink:0;font-size:13px;font-weight:600;
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq-grid{display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start}
+  .faq-grid > div:first-child{position:sticky;top:120px}
+  .faq-list{border-top:1px solid var(--line)}
+  .faq-item{border-bottom:1px solid var(--line);padding:28px 0;cursor:pointer}
+  .faq-item summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:24px}
+  .faq-item summary::-webkit-details-marker{display:none}
+  .faq-item summary h3{font-family:"Mamilla",serif;font-size:20px;font-weight:500;margin:0;flex:1;line-height:1.4}
+  .faq-toggle{
+    width:32px;height:32px;border-radius:50%;border:1px solid var(--line);
+    display:grid;place-items:center;flex-shrink:0;font-size:18px;color:var(--ink-soft);
+    transition:.3s;
+  }
+  .faq-item[open] .faq-toggle{transform:rotate(45deg);background:var(--accent);color:var(--bg-0);border-color:var(--accent)}
+  .faq-answer{padding-top:18px;color:var(--ink-soft);font-size:15px;max-width:60ch;line-height:1.7}
+
+  /* ---------- CONTACT ---------- */
+  .contact{position:relative}
+  .contact-grid{display:grid;grid-template-columns:5fr 4fr;gap:80px;align-items:start}
+  .contact h2{font-family:"Mamilla",serif;font-weight:500;font-size:clamp(38px,4.5vw,64px);line-height:1.05;margin:0 0 24px;letter-spacing:-.01em}
+  .contact h2 em{font-style:italic;color:var(--accent)}
+  .contact p.sub{color:var(--ink-soft);font-size:17px;max-width:46ch;margin:0 0 40px}
+  .contact-meta{display:grid;gap:16px;margin-top:48px}
+  .contact-meta div{display:flex;align-items:center;gap:16px;padding:16px 0;border-top:1px solid var(--line);font-size:14px;color:var(--ink-soft)}
+  .contact-meta div .mono{font-size:11px;color:var(--ink-dim);min-width:90px}
+
+  form.contact-form{
+    padding:40px;border:1px solid var(--line);border-radius:24px;
+    background:rgba(255,255,255,.02);
+    display:grid;gap:18px;
+  }
+  .field{display:grid;gap:8px}
+  .field label{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-dim)}
+  .field input, .field textarea, .field select{
+    background:transparent;border:none;border-bottom:1px solid var(--line);
+    padding:10px 0;color:var(--ink);font-family:inherit;font-size:15px;
+    transition:border-color .3s;
+    font-weight:300;
+  }
+  .field input:focus, .field textarea:focus, .field select:focus{outline:none;border-color:var(--accent)}
+  .field textarea{resize:vertical;min-height:80px}
+  .field select{appearance:none;background-image:linear-gradient(45deg, transparent 50%, var(--ink-soft) 50%);background-position:left 6px center;background-size:10px 10px;background-repeat:no-repeat;padding-left:28px}
+  .form-submit{
+    margin-top:8px;width:100%;justify-content:center;
+  }
+  .form-note{font-size:12px;color:var(--ink-dim);text-align:center;margin-top:4px}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:60px 48px 40px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:center;
+    color:var(--ink-dim);font-size:13px;flex-wrap:wrap;gap:20px;
+  }
+  footer .socials{display:flex;gap:20px;align-items:center}
+  footer a:hover{color:var(--ink)}
+  footer .phone-link{color:var(--accent);direction:ltr}
+
+  /* ---------- TWEAKS PANEL ---------- */
+  .tweaks{
+    position:fixed;bottom:24px;left:24px;z-index:100;
+    background:rgba(11,7,22,.9);backdrop-filter:blur(20px);
+    border:1px solid var(--line);border-radius:18px;
+    padding:18px;min-width:240px;
+    display:none;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,.6);
+  }
+  .tweaks.show{display:block}
+  .tweaks h5{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-dim);margin:0 0 14px}
+  .palette-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+  .palette-btn{
+    padding:12px;border-radius:12px;border:1px solid var(--line);
+    display:flex;flex-direction:column;align-items:flex-start;gap:8px;
+    transition:.3s;text-align:right;
+  }
+  .palette-btn.active{border-color:var(--accent)}
+  .palette-btn:hover{background:rgba(255,255,255,.04)}
+  .palette-swatches{display:flex;gap:4px}
+  .palette-swatches i{width:16px;height:16px;border-radius:50%;display:block}
+  .palette-btn span{font-size:12px;color:var(--ink-soft)}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:900px){
+    .wrap{padding:0 24px}
+    section{padding:80px 0}
+    nav.top{padding:14px 24px}
+    nav.top ul{display:none}
+    .services-head,.about-grid,.contact-grid,.faq-grid,.location-inner{grid-template-columns:1fr;gap:40px}
+    .service-grid,.flow-steps{grid-template-columns:1fr}
+    .benefits-grid{grid-template-columns:1fr 1fr}
+    .why-block{grid-template-columns:1fr;padding:32px}
+    .why-quote{border-right:none;border-top:2px solid var(--accent);padding-right:0;padding-top:20px}
+    .location-box{padding:40px 24px}
+    footer{padding:40px 24px}
+  }
+  @media (max-width:560px){
+    .benefits-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<div class="sky"></div>
+<div class="stars" id="stars"></div>
+
+<!-- ========== NAV ========== -->
+<nav class="top">
+  <div class="logo">
+    <div class="logo-mark">מק</div>
+    <div class="logo-text">מרדכי קרן<br><span class="sub">לגעת ברוח · לטפל בגוף</span></div>
+  </div>
+  <ul>
+    <li><a href="#services">מה אני עושה</a></li>
+    <li><a href="#flow">איך נראה טיפול</a></li>
+    <li><a href="#about">עליי</a></li>
+    <li><a href="#faq">שאלות</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">לתיאום טיפול ←</a>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="hero-orb"></div>
+  <div class="wrap">
+    <div class="eyebrow mono">מגע מדויק · דיקור קוסמטי</div>
+    <h1>
+      כאב, עומס, עייפות.<br>
+      וגם עור ש<em>נראה כבוי</em>.<br>
+      זה לא קורה סתם.
+    </h1>
+    <p class="lede">
+      הגוף שלך מדבר — בכאב בגב, בכתפיים שלא משחררות, בפנים שנראות עייפות גם אחרי שישנת.
+      הטיפולים שלי לא מכסים את התסמינים. הם מחזירים לגוף את התפקוד, ולעור את החיים.
+    </p>
+    <div class="hero-cta">
+      <a href="tel:0526228343" class="btn btn-primary">
+        <span>📞 לתיאום טיפול · 052-622-8343</span>
+      </a>
+      <a href="#contact" class="btn btn-ghost">
+        <span>השאר/י פרטים ואחזור אליך</span>
+      </a>
+    </div>
+    <div class="hero-meta">
+      <span>נהריה · תל אביב</span>
+      <span>בתיאום מראש בלבד</span>
+      <span>טיפולי מגע + דיקור קוסמטי</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SERVICES ========== -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="services-head">
+      <div>
+        <div class="eyebrow mono">מה אני עושה</div>
+        <h2>שני כלים.<br><span>מטרה אחת — להחזיר אותך לעצמך.</span></h2>
+      </div>
+      <div>
+        <p class="intro">שילוב של עבודה עמוקה על הגוף עם עידון ממוקד של הפנים. לא עוד טיפול מפנק, ולא עוד הזרקה — שני כלים מדויקים שעובדים יחד.</p>
+        <p class="intro">כי הגוף שלך והפנים שלך הם אותו סיפור. כשהגוף משחרר, גם הפנים נפתחים.</p>
+      </div>
+    </div>
+
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="service-icon">👐</div>
+        <h3>טיפולי מגע מדויקים</h3>
+        <p>שחרור עמוק של שרירים ורקמות. לא עיסוי מפנק — עבודה ממוקדת על המקומות שבאמת תקועים. המגע הוא כלי, לא אווירה.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🪡</div>
+        <h3>דיקור קוסמטי</h3>
+        <p>החזרת זרימה, גירוי טבעי של הקולגן, וזוהר שחוזר לפנים מבפנים החוצה. בלי הזרקות. בלי מכשור. רק הגוף שלך עושה את העבודה.</p>
+      </div>
+    </div>
+
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-check">✓</div>
+        <h3>שחרור שרירים עמוק</h3>
+        <p>הכאב שאת/ה סוחב/ת כבר חודשים — נעלם.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-check">✓</div>
+        <h3>הפחתת סטרס</h3>
+        <p>הגוף יוצא ממצב של התגוננות מתמדת.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-check">✓</div>
+        <h3>זרימה ונראות העור</h3>
+        <p>פנים שנראות ערות, חיות, בריאות.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-check">✓</div>
+        <h3>תפקוד טוב יותר</h3>
+        <p>שינה טובה יותר, אנרגיה, ראש צלול.</p>
+      </div>
+    </div>
+
+    <div class="why-block">
+      <div class="why-quote">
+        הגוף שלך יודע לעשות את העבודה בעצמו — הוא רק צריך שמישהו יעזור לו להיזכר.
+        <small>הגישה שלי</small>
+      </div>
+      <div class="why-result">
+        <h4>למה לא הזרקות? למה לא מכשור?</h4>
+        <ul>
+          <li>בלי חומרים זרים שהגוף צריך לפנות</li>
+          <li>בלי טכנולוגיה אגרסיבית ותופעות לוואי</li>
+          <li>רק מגע, דיקור, וידע מדויק של איפה לעבוד</li>
+          <li>התוצאות אמיתיות — ולכן הן מחזיקות לאורך זמן</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== MID CTA ========== -->
+<section class="mid-cta">
+  <div class="wrap">
+    <h3>מוכן/ה לשחרר את מה שהגוף נושא?</h3>
+    <a href="tel:0526228343" class="phone-big">
+      <span>📞</span>
+      <span>052-622-8343</span>
+    </a>
+  </div>
+</section>
+
+<!-- ========== ABOUT ========== -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-photo">
+        <div class="halo"></div>
+        <div class="ph">תמונה של מרדכי<br><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-dim)">להשלמה</span></div>
+        <div class="caption"><span>מרדכי · 2026</span></div>
+      </div>
+      <div>
+        <div class="eyebrow mono">מי אני</div>
+        <h2>נעים להכיר,<br>אני <em>מרדכי קרן</em>.</h2>
+        <p>[פסקה ראשונה — רקע מקצועי: איפה למדת, כמה שנים בתחום, התמחויות.]</p>
+        <p>[פסקה שנייה — למה בחרת דווקא בשילוב של טיפולי מגע ודיקור קוסמטי, ומה הגישה האישית שמייחדת את העבודה שלך.]</p>
+        <p>[פסקה שלישית — משפט סיום קצר שמחבר אותך אל הקוראים: למה אתה עושה את מה שאתה עושה.]</p>
+        <div class="placeholder-note">
+          placeholder — צריך 3–4 משפטים ממרדכי: רקע, הכשרות, גישה אישית.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FLOW ========== -->
+<section class="flow" id="flow">
+  <div class="wrap">
+    <div class="flow-head">
+      <div class="eyebrow mono">איך נראה טיפול</div>
+      <h2>שלושה שלבים. קצב שלך. תוצאה שמחזיקה.</h2>
+      <p>כל טיפול נבנה אישית לפי מה שאת/ה מביא/ה לחדר. בלי תסריט קבוע — רק מה שהגוף שלך צריך עכשיו.</p>
+    </div>
+    <div class="flow-steps">
+      <div class="step">
+        <div class="step-glyph"></div>
+        <div class="step-num">שלב 01</div>
+        <h3>שיחת היכרות קצרה</h3>
+        <p>מה מטריד אותך, מה הגוף מספר, מה המטרה. אני מקשיב לפני שאני נוגע.</p>
+      </div>
+      <div class="step">
+        <div class="step-glyph"></div>
+        <div class="step-num">שלב 02</div>
+        <h3>טיפול ממוקד</h3>
+        <p>משלב מגע ודיקור לפי הצורך שלך. עבודה מדויקת על המקומות שבאמת תקועים.</p>
+      </div>
+      <div class="step">
+        <div class="step-glyph"></div>
+        <div class="step-num">שלב 03</div>
+        <h3>הנחיות להמשך</h3>
+        <p>מה לעשות בבית, על מה לשים לב, איך לשמר את השחרור שקיבלת על השולחן.</p>
+      </div>
+    </div>
+    <div class="flow-meta">
+      <span>משך טיפול · [placeholder — כמה זמן טיפול ממוצע?]</span>
+      <span>עלות · [placeholder — מחיר או "לפרטים בטלפון"?]</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== LOCATION ========== -->
+<section class="location">
+  <div class="wrap">
+    <div class="location-box">
+      <div class="location-inner">
+        <div>
+          <div class="eyebrow mono">איפה אני מטפל</div>
+          <h2><span class="pin">📍</span> נהריה ותל אביב.</h2>
+          <p>בתיאום מראש בלבד. זה לא מקום שנכנסים אליו מהרחוב — זה מרחב שנבנה במיוחד בשבילך, לזמן שלך.</p>
+          <p>כדי להבטיח שאני נותן לך את מלוא תשומת הלב, אני עובד רק בתיאום מראש.</p>
+        </div>
+        <div class="cities">
+          <div class="city">
+            <div class="city-dot"></div>
+            <div class="city-name">נהריה</div>
+            <div class="city-tag">בתיאום</div>
+          </div>
+          <div class="city">
+            <div class="city-dot"></div>
+            <div class="city-name">תל אביב</div>
+            <div class="city-tag">בתיאום</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== AUDIENCE ========== -->
+<section class="audience">
+  <div class="wrap">
+    <div class="audience-head">
+      <div class="eyebrow mono" style="justify-content:center">מתי כדאי להגיע</div>
+      <h2>הטיפולים שלי מתאימים לך אם…</h2>
+      <p>אם משפט אחד או יותר מתוך הרשימה מדבר אליך — זה בדיוק המקום שבו אוכל לעזור.</p>
+    </div>
+    <div class="audience-list">
+      <div class="audience-row"><div class="mark">✓</div><div>את/ה סוחב/ת כאב כרוני בגב, בצוואר או בכתפיים.</div></div>
+      <div class="audience-row"><div class="mark">✓</div><div>את/ה חי/ה עם עומס וסטרס שלא משחררים, גם כשהראש רוצה.</div></div>
+      <div class="audience-row"><div class="mark">✓</div><div>את/ה מרגיש/ה עייפות שלא עוברת גם אחרי שינה שלמה.</div></div>
+      <div class="audience-row"><div class="mark">✓</div><div>את/ה רוצה לשפר את נראות הפנים בלי לחזור להזרקות.</div></div>
+      <div class="audience-row"><div class="mark">✓</div><div>את/ה מחפש/ת פתרון טבעי שעובד לעומק, לא על פני השטח.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FAQ ========== -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="faq-grid">
+      <div>
+        <div class="eyebrow mono">שאלות נפוצות</div>
+        <h2 style="font-family:'Mamilla',serif;font-weight:500;font-size:clamp(30px,3.5vw,44px);line-height:1.1;margin:0;letter-spacing:-.01em">
+          הכל שרצית לדעת<br>לפני שתגיע/י.
+        </h2>
+        <p style="color:var(--ink-soft);margin-top:20px;font-size:15px">לא מצאת תשובה? התקשר/י — 052-622-8343.</p>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary><h3>זה כואב?</h3><span class="faq-toggle">+</span></summary>
+          <div class="faq-answer">המגע עמוק אבל מדויק — לא כואב מיותר. הדיקור כמעט ולא מורגש. אם משהו לא נוח — אומרים, מתאימים. אין "לסבול בשקט" בחדר שלי.</div>
+        </details>
+        <details class="faq-item">
+          <summary><h3>כמה טיפולים אני צריך/ה?</h3><span class="faq-toggle">+</span></summary>
+          <div class="faq-answer">תלוי במה שאת/ה מביא/ה. לפעמים טיפול אחד מספיק לשחרור משמעותי, לפעמים סדרה של 3–5 טיפולים נותנת תוצאה עמוקה יותר. נדבר על זה בשיחת ההיכרות — בלי התחייבות מראש.</div>
+        </details>
+        <details class="faq-item">
+          <summary><h3>מה ההבדל בין דיקור קוסמטי להזרקות?</h3><span class="faq-toggle">+</span></summary>
+          <div class="faq-answer">הזרקות ממלאות מבחוץ, לזמן מוגבל. דיקור מעורר את הגוף לייצר קולגן בעצמו — התוצאה מתפתחת בהדרגה ומחזיקה לאורך זמן, בלי חומרים זרים ובלי תופעות לוואי.</div>
+        </details>
+        <details class="faq-item">
+          <summary><h3>צריך להביא משהו?</h3><span class="faq-toggle">+</span></summary>
+          <div class="faq-answer">לא. רק את עצמך. המרחב מוכן, הכלים מוכנים — צריך רק להגיע נוכח/ת.</div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CONTACT ========== -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <div class="eyebrow mono">קריאה לפעולה</div>
+        <h2>הגוף שלך מחכה<br>שת<em>קשיב/י</em> לו.</h2>
+        <p class="sub">בוא/י נתחיל. התקשר/י ישירות, או השאר/י פרטים וחוזר אליך באותו יום עבודה.</p>
+
+        <div class="contact-meta">
+          <div><span class="mono">טלפון</span><span style="direction:ltr">052-622-8343</span></div>
+          <div><span class="mono">איפה</span><span>נהריה · תל אביב</span></div>
+          <div><span class="mono">מתי</span><span>בתיאום מראש בלבד</span></div>
+          <div><span class="mono">תגובה</span><span>חוזר אליך תוך יום עבודה</span></div>
+        </div>
+      </div>
+
+      <form class="contact-form" onsubmit="event.preventDefault();submitForm(this)">
+        <div class="field">
+          <label for="name">שם מלא</label>
+          <input id="name" type="text" required placeholder="איך לקרוא לך">
+        </div>
+        <div class="field">
+          <label for="phone">טלפון</label>
+          <input id="phone" type="tel" required placeholder="050-0000000">
+        </div>
+        <div class="field">
+          <label for="city">איפה נוח לך</label>
+          <select id="city" required>
+            <option value="">בחר/י מיקום</option>
+            <option>נהריה</option>
+            <option>תל אביב</option>
+            <option>גמיש — כל אחד מהשניים</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="note">מה מטריד אותך כרגע?</label>
+          <textarea id="note" placeholder="כמה מילים במילים שלך — כאב, עייפות, עור, או משהו אחר"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary form-submit">
+          <span>קבע/י טיפול</span>
+          <span class="arrow">←</span>
+        </button>
+        <div class="form-note">הפרטים שלך נשארים אצלי בלבד.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">
+    <div class="logo-mark">מק</div>
+    <div class="logo-text">מרדכי קרן · לגעת ברוח, לטפל בגוף</div>
+  </div>
+  <div class="socials">
+    <span>נהריה • תל אביב</span>
+    <a href="tel:0526228343" class="phone-link">052-622-8343</a>
+    <a href="#">הצהרת נגישות</a>
+  </div>
+  <div>© 2026 · כל הזכויות שמורות</div>
+</footer>
+
+<!-- ========== TWEAKS ========== -->
+<div class="tweaks" id="tweaks">
+  <h5>פלטת צבעים</h5>
+  <div class="palette-grid" id="paletteGrid"></div>
+</div>
+
+<script>
+  /* ---------- TWEAK DEFAULTS ---------- */
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "palette": "twilight"
+  }/*EDITMODE-END*/;
+
+  const palettes = [
+    {id:"cosmos",   name:"קוסמוס",   swatches:["#0b0716","#8b6ff0","#c9a86a"]},
+    {id:"twilight", name:"דמדומים", swatches:["#0a0e1f","#6f8dff","#e8b0d6"]},
+    {id:"dawn",     name:"שחר",     swatches:["#140b18","#c67fd4","#ffb37a"]},
+    {id:"forest",   name:"יער",     swatches:["#071411","#69b38e","#d6b87a"]},
+  ];
+
+  function applyPalette(id){
+    document.documentElement.setAttribute("data-palette", id);
+    document.querySelectorAll(".palette-btn").forEach(b=>{
+      b.classList.toggle("active", b.dataset.id === id);
+    });
+  }
+  function renderPaletteGrid(){
+    const grid = document.getElementById("paletteGrid");
+    grid.innerHTML = palettes.map(p=>`
+      <button class="palette-btn" data-id="${p.id}" onclick="pickPalette('${p.id}')">
+        <div class="palette-swatches">
+          ${p.swatches.map(s=>`<i style="background:${s}"></i>`).join("")}
+        </div>
+        <span>${p.name}</span>
+      </button>
+    `).join("");
+  }
+  function pickPalette(id){
+    applyPalette(id);
+    window.parent.postMessage({type:'__edit_mode_set_keys', edits:{palette:id}}, '*');
+  }
+
+  /* ---------- EDIT MODE PROTOCOL ---------- */
+  window.addEventListener("message",(e)=>{
+    const d = e.data || {};
+    if(d.type === "__activate_edit_mode"){ document.getElementById("tweaks").classList.add("show") }
+    if(d.type === "__deactivate_edit_mode"){ document.getElementById("tweaks").classList.remove("show") }
+  });
+  renderPaletteGrid();
+  applyPalette(TWEAK_DEFAULTS.palette);
+  window.parent.postMessage({type:"__edit_mode_available"}, "*");
+
+  /* ---------- STARS ---------- */
+  const starsEl = document.getElementById("stars");
+  const starCount = 80;
+  let starHtml = "";
+  for(let i=0;i<starCount;i++){
+    const x = Math.random()*100;
+    const y = Math.random()*100;
+    const d = (Math.random()*4 + 2).toFixed(1);
+    const delay = (Math.random()*4).toFixed(1);
+    const sz = (Math.random()*1.5 + 1).toFixed(1);
+    starHtml += `<i style="left:${x}%;top:${y}%;width:${sz}px;height:${sz}px;animation-duration:${d}s;animation-delay:${delay}s"></i>`;
+  }
+  starsEl.innerHTML = starHtml;
+
+  /* ---------- FORM ---------- */
+  function submitForm(form){
+    const btn = form.querySelector("button[type=submit]");
+    const orig = btn.innerHTML;
+    btn.innerHTML = '<span>נשלח ✓</span>';
+    btn.style.background = 'var(--accent)';
+    setTimeout(()=>{
+      form.reset();
+      btn.innerHTML = orig;
+      btn.style.background = '';
+    }, 2500);
+  }
+
+  /* ---------- SMOOTH SCROLL ---------- */
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener("click",(e)=>{
+      const id = a.getAttribute("href");
+      if(id.length>1){
+        const target = document.querySelector(id);
+        if(target){
+          e.preventDefault();
+          window.scrollTo({top: target.offsetTop - 60, behavior:"smooth"});
+        }
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
