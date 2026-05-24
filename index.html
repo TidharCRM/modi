@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="מרדכי קרן - לגעת ברוח, לטפל בגוף. טיפולי מגע, עיסוי רפואי ודיקור קוסמטי, עם חבילת RESET 90 לחידוש הגוף והפנים." />
 <title>מרדכי קרן · לגעת ברוח, לטפל בגוף</title>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -222,6 +223,49 @@
   .service-card h3{font-family:"Mamilla",serif;font-size:26px;font-weight:500;margin:0 0 14px;letter-spacing:-.01em}
   .service-card p{font-size:15px;color:var(--ink-soft);margin:0;line-height:1.7}
 
+  .reset-spotlight{
+    margin-top:34px;
+    padding:42px;
+    border:1px solid var(--accent);
+    border-radius:24px;
+    background:
+      radial-gradient(ellipse at top left, var(--glow-a), transparent 55%),
+      linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:34px;
+    align-items:center;
+  }
+  .reset-spotlight h3{
+    font-family:"Mamilla",serif;
+    font-size:clamp(30px,3.4vw,48px);
+    font-weight:500;
+    line-height:1.1;
+    margin:0 0 18px;
+  }
+  .reset-spotlight h3 em{font-style:italic;color:var(--accent)}
+  .reset-spotlight p{color:var(--ink-soft);margin:0;font-size:16px;line-height:1.75}
+  .reset-breakdown{
+    display:grid;
+    gap:12px;
+  }
+  .reset-breakdown div{
+    padding:18px 20px;
+    border:1px solid var(--line);
+    border-radius:16px;
+    background:rgba(0,0,0,.18);
+    color:var(--ink-soft);
+    font-size:15px;
+  }
+  .reset-breakdown strong{
+    display:block;
+    color:var(--ink);
+    font-family:"Mamilla",serif;
+    font-size:22px;
+    font-weight:500;
+    margin-bottom:4px;
+  }
+
   /* ---------- BENEFITS ---------- */
   .benefits-grid{
     margin-top:80px;
@@ -337,9 +381,15 @@
   }
   .about h2 em{font-style:italic;color:var(--accent)}
   .about p{color:var(--ink-soft);font-size:17px;margin:0 0 20px;max-width:52ch}
-  .about .placeholder-note{
-    margin-top:24px;padding:18px 22px;border:1px dashed var(--line);border-radius:14px;
-    font-size:13px;color:var(--ink-dim);font-family:"JetBrains Mono",monospace;letter-spacing:.05em;line-height:1.7;
+  .about .signature-note{
+    margin-top:24px;
+    padding:18px 22px;
+    border:1px solid var(--line);
+    border-radius:14px;
+    font-size:15px;
+    color:var(--ink-soft);
+    line-height:1.7;
+    background:rgba(255,255,255,.02);
   }
 
   /* ---------- LOCATION ---------- */
@@ -485,6 +535,7 @@
     nav.top{padding:14px 24px}
     nav.top ul{display:none}
     .services-head,.about-grid,.contact-grid,.faq-grid,.location-inner{grid-template-columns:1fr;gap:40px}
+    .reset-spotlight{grid-template-columns:1fr;padding:30px 24px}
     .service-grid,.flow-steps{grid-template-columns:1fr}
     .benefits-grid{grid-template-columns:1fr 1fr}
     .why-block{grid-template-columns:1fr;padding:32px}
@@ -523,13 +574,13 @@
   <div class="wrap">
     <div class="eyebrow mono">מגע מדויק · דיקור קוסמטי</div>
     <h1>
-      כאב, עומס, עייפות.<br>
-      וגם עור ש<em>נראה כבוי</em>.<br>
-      זה לא קורה סתם.
+      לגעת ברוח.<br>
+      <em>לטפל בגוף</em>.<br>
+      לחזור לשקט פנימי.
     </h1>
     <p class="lede">
-      הגוף שלך מדבר — בכאב בגב, בכתפיים שלא משחררות, בפנים שנראות עייפות גם אחרי שישנת.
-      הטיפולים שלי לא מכסים את התסמינים. הם מחזירים לגוף את התפקוד, ולעור את החיים.
+      טיפולי מגע, עיסוי רפואי ודיקור קוסמטי לא.נשים שעובדים הרבה מול מחשב, מתאמנים, מנהלים קריירה עמוסה ורוצים לשמור על הגוף לאורך זמן.
+      המטרה היא לא רק "לשחרר שריר" — אלא להחזיר את מערכת הגוף לרגיעה, זרימה ושחרור ממתח.
     </p>
     <div class="hero-cta">
       <a href="tel:0526228343" class="btn btn-primary">
@@ -542,7 +593,7 @@
     <div class="hero-meta">
       <span>נהריה · תל אביב</span>
       <span>בתיאום מראש בלבד</span>
-      <span>טיפולי מגע + דיקור קוסמטי</span>
+      <span>RESET 90 · עיסוי רפואי + טיפול פנים</span>
     </div>
   </div>
 </section>
@@ -556,59 +607,74 @@
         <h2>שני כלים.<br><span>מטרה אחת — להחזיר אותך לעצמך.</span></h2>
       </div>
       <div>
-        <p class="intro">שילוב של עבודה עמוקה על הגוף עם עידון ממוקד של הפנים. לא עוד טיפול מפנק, ולא עוד הזרקה — שני כלים מדויקים שעובדים יחד.</p>
-        <p class="intro">כי הגוף שלך והפנים שלך הם אותו סיפור. כשהגוף משחרר, גם הפנים נפתחים.</p>
+        <p class="intro">הטיפול מתחלק לשני עולמות משלימים: טיפולי מגע שמחזירים את מערכת הגוף לרגיעה, ודיקור קוסמטי שמחדש את הפנים דרך עבודה פנימית על מתח, זרימה וחיוניות.</p>
+        <p class="intro">זה מתאים למי שמבין שטיפול הוא דרך חיים — בדיוק כמו ספורט ותזונה נכונה — לא משהו עם תאריך יעד או תאריך תפוגה.</p>
       </div>
     </div>
 
     <div class="service-grid">
       <div class="service-card">
         <div class="service-icon">👐</div>
-        <h3>טיפולי מגע מדויקים</h3>
-        <p>שחרור עמוק של שרירים ורקמות. לא עיסוי מפנק — עבודה ממוקדת על המקומות שבאמת תקועים. המגע הוא כלי, לא אווירה.</p>
+        <h3>טיפולי מגע</h3>
+        <p>עיסוי רפואי, כוסות רוח, אבנים חמות ורקמות עמוקות. המגע לא רודף אחרי "שחרור שריר" נקודתי — הוא עובד על מערכת הגוף כדי להוריד עומס, לחץ וחרדה. השחרור השרירי מגיע כתופעת לוואי חיובית.</p>
       </div>
       <div class="service-card">
         <div class="service-icon">🪡</div>
         <h3>דיקור קוסמטי</h3>
-        <p>החזרת זרימה, גירוי טבעי של הקולגן, וזוהר שחוזר לפנים מבפנים החוצה. בלי הזרקות. בלי מכשור. רק הגוף שלך עושה את העבודה.</p>
+        <p>טיפול פנים לנשים שמשלב דיקור בנקודות ספציפיות בפנים ובגוף, לצד רולרים, גוואשה, בלה באצ'י ותכשירים כמו סבון פנים, פילינג, חומצה היאלורונית, סרום, קרם עיניים וקרם פנים. המטרה: הורדת מתח, חידוש זרימת הדם, שמירה על העור וטשטוש קמטים — ללא הזרקות.</p>
+      </div>
+    </div>
+
+    <div class="reset-spotlight">
+      <div>
+        <div class="eyebrow mono">חבילת הדגל</div>
+        <h3>RESET 90 — <em>90 דקות של חידוש מערכות.</em></h3>
+        <p>
+          חבילה אחת שמחברת את שני הטיפולים: עבודה עמוקה על הגוף ואז טיפול פנים שממשיך את השחרור אל הנשימה, הזרימה והמראה.
+          מתאימה במיוחד למי שמגיע/ה מעומס מתמשך ורוצה לצאת עם תחושה של איפוס אמיתי.
+        </p>
+      </div>
+      <div class="reset-breakdown">
+        <div><strong>60 דקות</strong>עיסוי רפואי וטיפול מגע מותאם אישית.</div>
+        <div><strong>30 דקות</strong>טיפול פנים, דיקור קוסמטי ואביזרים משלימים.</div>
       </div>
     </div>
 
     <div class="benefits-grid">
       <div class="benefit-card">
         <div class="benefit-check">✓</div>
-        <h3>שחרור שרירים עמוק</h3>
-        <p>הכאב שאת/ה סוחב/ת כבר חודשים — נעלם.</p>
+        <h3>רגיעה מערכתית</h3>
+        <p>מעבר ממצב של דריכות מתמשכת למצב שבו הגוף יכול לשחרר.</p>
       </div>
       <div class="benefit-card">
         <div class="benefit-check">✓</div>
         <h3>הפחתת סטרס</h3>
-        <p>הגוף יוצא ממצב של התגוננות מתמדת.</p>
+        <p>עבודה שמכוונת גם למתח, לחץ וחרדה שמצטברים בגוף.</p>
       </div>
       <div class="benefit-card">
         <div class="benefit-check">✓</div>
         <h3>זרימה ונראות העור</h3>
-        <p>פנים שנראות ערות, חיות, בריאות.</p>
+        <p>עידוד זרימת דם, חידוש מראה העור וטשטוש עדין של קמטים.</p>
       </div>
       <div class="benefit-card">
         <div class="benefit-check">✓</div>
-        <h3>תפקוד טוב יותר</h3>
-        <p>שינה טובה יותר, אנרגיה, ראש צלול.</p>
+        <h3>תחזוקה לאורך זמן</h3>
+        <p>טיפול כחלק משגרה ששומרת על הגוף, לא רק כשכבר כואב.</p>
       </div>
     </div>
 
     <div class="why-block">
       <div class="why-quote">
-        הגוף שלך יודע לעשות את העבודה בעצמו — הוא רק צריך שמישהו יעזור לו להיזכר.
+        שחרור השריר הוא לא המטרה היחידה. הוא סימן שהמערכת כולה התחילה להירגע.
         <small>הגישה שלי</small>
       </div>
       <div class="why-result">
-        <h4>למה לא הזרקות? למה לא מכשור?</h4>
+        <h4>מה מייחד את העבודה?</h4>
         <ul>
-          <li>בלי חומרים זרים שהגוף צריך לפנות</li>
-          <li>בלי טכנולוגיה אגרסיבית ותופעות לוואי</li>
-          <li>רק מגע, דיקור, וידע מדויק של איפה לעבוד</li>
-          <li>התוצאות אמיתיות — ולכן הן מחזיקות לאורך זמן</li>
+          <li>הסתכלות פנימית על האדם ולא רק על המקום שכואב</li>
+          <li>שילוב בין מגע עמוק, נשימה, זרימה ועבודה על מערכת העצבים</li>
+          <li>טיפול שמותאם לעומס היומיומי של עבודה, אימונים וקריירה</li>
+          <li>מענה טבעי לפנים ולגוף בלי הזרקות ובלי הבטחות קסם</li>
         </ul>
       </div>
     </div>
@@ -618,7 +684,7 @@
 <!-- ========== MID CTA ========== -->
 <section class="mid-cta">
   <div class="wrap">
-    <h3>מוכן/ה לשחרר את מה שהגוף נושא?</h3>
+    <h3>רוצה להתחיל מ־RESET 90 ולתת לגוף ולפנים טיפול אחד שלם?</h3>
     <a href="tel:0526228343" class="phone-big">
       <span>📞</span>
       <span>052-622-8343</span>
@@ -632,17 +698,17 @@
     <div class="about-grid">
       <div class="about-photo">
         <div class="halo"></div>
-        <div class="ph">תמונה של מרדכי<br><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-dim)">להשלמה</span></div>
-        <div class="caption"><span>מרדכי · 2026</span></div>
+        <div class="ph">לגעת ברוח<br>לטפל בגוף</div>
+        <div class="caption"><span>RESET 90 · טיפולי מגע · דיקור קוסמטי</span></div>
       </div>
       <div>
         <div class="eyebrow mono">מי אני</div>
         <h2>נעים להכיר,<br>אני <em>מרדכי קרן</em>.</h2>
-        <p>[פסקה ראשונה — רקע מקצועי: איפה למדת, כמה שנים בתחום, התמחויות.]</p>
-        <p>[פסקה שנייה — למה בחרת דווקא בשילוב של טיפולי מגע ודיקור קוסמטי, ומה הגישה האישית שמייחדת את העבודה שלך.]</p>
-        <p>[פסקה שלישית — משפט סיום קצר שמחבר אותך אל הקוראים: למה אתה עושה את מה שאתה עושה.]</p>
-        <div class="placeholder-note">
-          placeholder — צריך 3–4 משפטים ממרדכי: רקע, הכשרות, גישה אישית.
+        <p>העבודה שלי נולדה מתוך הבנה שטיפול טוב לא מסתיים במקום שבו השריר משתחרר. הגוף מחזיק עומס, לחץ, מחשבות ושגרה — והמגע הוא דרך לפגוש את כל זה בצורה מדויקת.</p>
+        <p>בטיפולי המגע אני משלב עיסוי רפואי, כוסות רוח, אבנים חמות ורקמות עמוקות. בדיקור הקוסמטי אני עובד עם נקודות בפנים ובגוף, יחד עם רולרים, גוואשה, בלה באצ'י ותכשירים שמחזקים את החידוש הטבעי של העור.</p>
+        <p>אני מתאים במיוחד לא.נשים שמבינים שתחזוקת הגוף היא חלק מאורח חיים: כמו אימון, תזונה ושינה. לא מחכים שהגוף יקרוס — שומרים עליו תוך כדי החיים.</p>
+        <div class="signature-note">
+          הטיפול הוא חלק מתהליך. אין לו תאריך יעד או תאריך תפוגה — הוא דרך לשמור על הגוף לאורך זמן.
         </div>
       </div>
     </div>
@@ -654,32 +720,32 @@
   <div class="wrap">
     <div class="flow-head">
       <div class="eyebrow mono">איך נראה טיפול</div>
-      <h2>שלושה שלבים. קצב שלך. תוצאה שמחזיקה.</h2>
-      <p>כל טיפול נבנה אישית לפי מה שאת/ה מביא/ה לחדר. בלי תסריט קבוע — רק מה שהגוף שלך צריך עכשיו.</p>
+      <h2>שלושה שלבים. הקשבה עמוקה. טיפול שממשיך אחרי החדר.</h2>
+      <p>כל טיפול נבנה לפי מה שהגוף מביא באותו יום: עומס מחשב, אימון קשה, סטרס, עייפות או רצון לחדש את הפנים בלי הזרקות.</p>
     </div>
     <div class="flow-steps">
       <div class="step">
         <div class="step-glyph"></div>
         <div class="step-num">שלב 01</div>
-        <h3>שיחת היכרות קצרה</h3>
-        <p>מה מטריד אותך, מה הגוף מספר, מה המטרה. אני מקשיב לפני שאני נוגע.</p>
+        <h3>בירור והקשבה</h3>
+        <p>מה מטריד אותך, איפה הגוף מחזיק עומס, איך נראית השגרה שלך ומה חשוב שנשחרר כבר בטיפול הראשון.</p>
       </div>
       <div class="step">
         <div class="step-glyph"></div>
         <div class="step-num">שלב 02</div>
-        <h3>טיפול ממוקד</h3>
-        <p>משלב מגע ודיקור לפי הצורך שלך. עבודה מדויקת על המקומות שבאמת תקועים.</p>
+        <h3>עבודה מותאמת</h3>
+        <p>מגע עמוק, כוסות רוח, אבנים חמות, רקמות עמוקות או דיקור קוסמטי — לפי הצורך ולא לפי תבנית קבועה.</p>
       </div>
       <div class="step">
         <div class="step-glyph"></div>
         <div class="step-num">שלב 03</div>
-        <h3>הנחיות להמשך</h3>
-        <p>מה לעשות בבית, על מה לשים לב, איך לשמר את השחרור שקיבלת על השולחן.</p>
+        <h3>שימור ותחזוקה</h3>
+        <p>הבנה מה הגוף מבקש בהמשך ואיך להפוך טיפול להרגל שמחזיק אותך לאורך זמן.</p>
       </div>
     </div>
     <div class="flow-meta">
-      <span>משך טיפול · [placeholder — כמה זמן טיפול ממוצע?]</span>
-      <span>עלות · [placeholder — מחיר או "לפרטים בטלפון"?]</span>
+      <span>RESET 90 · 60 דקות עיסוי רפואי + 30 דקות טיפול פנים</span>
+      <span>פרטים ומחיר · בשיחת תיאום קצרה</span>
     </div>
   </div>
 </section>
@@ -718,14 +784,14 @@
     <div class="audience-head">
       <div class="eyebrow mono" style="justify-content:center">מתי כדאי להגיע</div>
       <h2>הטיפולים שלי מתאימים לך אם…</h2>
-      <p>אם משפט אחד או יותר מתוך הרשימה מדבר אליך — זה בדיוק המקום שבו אוכל לעזור.</p>
+      <p>אם הגוף שלך עובד קשה ביומיום — מול מחשב, באימונים או בקריירה אינטנסיבית — זה בדיוק המקום שבו טיפול יכול להפוך לתחזוקה קבועה.</p>
     </div>
     <div class="audience-list">
-      <div class="audience-row"><div class="mark">✓</div><div>את/ה סוחב/ת כאב כרוני בגב, בצוואר או בכתפיים.</div></div>
-      <div class="audience-row"><div class="mark">✓</div><div>את/ה חי/ה עם עומס וסטרס שלא משחררים, גם כשהראש רוצה.</div></div>
-      <div class="audience-row"><div class="mark">✓</div><div>את/ה מרגיש/ה עייפות שלא עוברת גם אחרי שינה שלמה.</div></div>
-      <div class="audience-row"><div class="mark">✓</div><div>את/ה רוצה לשפר את נראות הפנים בלי לחזור להזרקות.</div></div>
-      <div class="audience-row"><div class="mark">✓</div><div>את/ה מחפש/ת פתרון טבעי שעובד לעומק, לא על פני השטח.</div></div>
+      <div class="audience-row"><div class="mark">✓</div><div>את/ה עובד/ת שעות מול מחשב ומרגיש/ה את זה בצוואר, בכתפיים או בגב.</div></div>
+      <div class="audience-row"><div class="mark">✓</div><div>את/ה מתאמן/ת ורוצה לשמור על הגוף בין עומסים, התאוששות ופציעות קטנות.</div></div>
+      <div class="audience-row"><div class="mark">✓</div><div>את/ה בקריירה תובענית והגוף נשאר דרוך גם כשהיום נגמר.</div></div>
+      <div class="audience-row"><div class="mark">✓</div><div>את אישה שרוצה טיפול פנים טבעי, פנימי ועדין יותר, ללא הזרקות.</div></div>
+      <div class="audience-row"><div class="mark">✓</div><div>את/ה מחפש/ת טיפול כחלק מאורח חיים, לא רק כפתרון חירום כשכבר כואב.</div></div>
     </div>
   </div>
 </section>
@@ -743,20 +809,20 @@
       </div>
       <div class="faq-list">
         <details class="faq-item" open>
-          <summary><h3>זה כואב?</h3><span class="faq-toggle">+</span></summary>
-          <div class="faq-answer">המגע עמוק אבל מדויק — לא כואב מיותר. הדיקור כמעט ולא מורגש. אם משהו לא נוח — אומרים, מתאימים. אין "לסבול בשקט" בחדר שלי.</div>
+          <summary><h3>מה כוללת חבילת RESET 90?</h3><span class="faq-toggle">+</span></summary>
+          <div class="faq-answer">90 דקות שמחברות בין שני העולמות: 60 דקות עיסוי רפואי וטיפול מגע לגוף, ועוד 30 דקות טיפול פנים ודיקור קוסמטי. המטרה היא חידוש מלא יותר — גוף רגוע יותר, פנים פתוחות יותר ותחושה של איפוס.</div>
         </details>
         <details class="faq-item">
-          <summary><h3>כמה טיפולים אני צריך/ה?</h3><span class="faq-toggle">+</span></summary>
-          <div class="faq-answer">תלוי במה שאת/ה מביא/ה. לפעמים טיפול אחד מספיק לשחרור משמעותי, לפעמים סדרה של 3–5 טיפולים נותנת תוצאה עמוקה יותר. נדבר על זה בשיחת ההיכרות — בלי התחייבות מראש.</div>
+          <summary><h3>האם הטיפול מיועד רק לכאבים?</h3><span class="faq-toggle">+</span></summary>
+          <div class="faq-answer">לא. כאב הוא הרבה פעמים רק הביטוי החיצוני. הטיפול מכוון להרגעה של מערכת הגוף, שחרור עומס, הפחתת סטרס ושיפור זרימה. שחרור השריר הוא חלק מהתוצאה, לא כל הסיפור.</div>
         </details>
         <details class="faq-item">
           <summary><h3>מה ההבדל בין דיקור קוסמטי להזרקות?</h3><span class="faq-toggle">+</span></summary>
-          <div class="faq-answer">הזרקות ממלאות מבחוץ, לזמן מוגבל. דיקור מעורר את הגוף לייצר קולגן בעצמו — התוצאה מתפתחת בהדרגה ומחזיקה לאורך זמן, בלי חומרים זרים ובלי תופעות לוואי.</div>
+          <div class="faq-answer">דיקור קוסמטי לא ממלא את הפנים מבחוץ. הוא עובד עם נקודות בפנים ובגוף, משפר זרימה, מוריד מתח ומעודד את החידוש הטבעי של העור. הטיפול משלב גם רולרים, גוואשה, בלה באצ'י ותכשירים מתאימים.</div>
         </details>
         <details class="faq-item">
-          <summary><h3>צריך להביא משהו?</h3><span class="faq-toggle">+</span></summary>
-          <div class="faq-answer">לא. רק את עצמך. המרחב מוכן, הכלים מוכנים — צריך רק להגיע נוכח/ת.</div>
+          <summary><h3>כמה טיפולים צריך?</h3><span class="faq-toggle">+</span></summary>
+          <div class="faq-answer">זה תלוי במטרה ובשגרה שלך. יש מי שמגיעים לטיפול נקודתי, ויש מי שבונים שגרת תחזוקה קבועה. מבחינתי טיפול הוא דרך חיים לשמירה על הגוף, כמו ספורט ותזונה נכונה.</div>
         </details>
       </div>
     </div>
@@ -770,7 +836,7 @@
       <div>
         <div class="eyebrow mono">קריאה לפעולה</div>
         <h2>הגוף שלך מחכה<br>שת<em>קשיב/י</em> לו.</h2>
-        <p class="sub">בוא/י נתחיל. התקשר/י ישירות, או השאר/י פרטים וחוזר אליך באותו יום עבודה.</p>
+        <p class="sub">רוצה טיפול מגע, דיקור קוסמטי או RESET 90? התקשר/י ישירות, או השאר/י פרטים ואחזור אליך לתיאום.</p>
 
         <div class="contact-meta">
           <div><span class="mono">טלפון</span><span style="direction:ltr">052-622-8343</span></div>
@@ -790,17 +856,18 @@
           <input id="phone" type="tel" required placeholder="050-0000000">
         </div>
         <div class="field">
-          <label for="city">איפה נוח לך</label>
-          <select id="city" required>
-            <option value="">בחר/י מיקום</option>
-            <option>נהריה</option>
-            <option>תל אביב</option>
-            <option>גמיש — כל אחד מהשניים</option>
+          <label for="treatment">איזה טיפול מעניין אותך</label>
+          <select id="treatment" required>
+            <option value="">בחר/י טיפול</option>
+            <option>RESET 90</option>
+            <option>טיפול מגע / עיסוי רפואי</option>
+            <option>דיקור קוסמטי</option>
+            <option>עדיין לא בטוח/ה</option>
           </select>
         </div>
         <div class="field">
           <label for="note">מה מטריד אותך כרגע?</label>
-          <textarea id="note" placeholder="כמה מילים במילים שלך — כאב, עייפות, עור, או משהו אחר"></textarea>
+          <textarea id="note" placeholder="כמה מילים במילים שלך — עומס, כאב, מתח, עור הפנים או משהו אחר"></textarea>
         </div>
         <button type="submit" class="btn btn-primary form-submit">
           <span>קבע/י טיפול</span>
@@ -894,8 +961,22 @@
   function submitForm(form){
     const btn = form.querySelector("button[type=submit]");
     const orig = btn.innerHTML;
+    const name = form.querySelector("#name")?.value || "";
+    const phone = form.querySelector("#phone")?.value || "";
+    const treatment = form.querySelector("#treatment")?.value || "";
+    const note = form.querySelector("#note")?.value || "";
+    const message = [
+      "שלום מרדכי, הגעתי מדף הנחיתה ואשמח לתאם טיפול.",
+      `שם: ${name}`,
+      `טלפון: ${phone}`,
+      `טיפול שמעניין אותי: ${treatment}`,
+      note ? `הערה: ${note}` : ""
+    ].filter(Boolean).join("\n");
+    const whatsappUrl = `https://wa.me/972526228343?text=${encodeURIComponent(message)}`;
+
     btn.innerHTML = '<span>נשלח ✓</span>';
     btn.style.background = 'var(--accent)';
+    window.open(whatsappUrl, "_blank", "noopener");
     setTimeout(()=>{
       form.reset();
       btn.innerHTML = orig;
